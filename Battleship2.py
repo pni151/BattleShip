@@ -66,14 +66,11 @@ def createShips():
         for ship in ship_objs:
                 cell_objs = [Cell() for i in range(4)]
                 #print("len of cell_objs",len(cell_objs))
+                arr = []
                 for cell in  cell_objs:
-                        ship.cellArray.append(cell)
-                        print("len of cell_objs",ship, len(ship.cellArray))
-                        del cell
+                        arr.append(cell)
+                ship.cellArray = arr
                 allShips.append(ship)
-                del ship
-        for i in range(4):
-               print(len(allShips[i].cellArray))
 
         for ship in allShips:
                 ship_row = randint(0, rows-1)
