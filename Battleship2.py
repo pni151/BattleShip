@@ -1,8 +1,9 @@
 from random import randint
+from tkinter.tix import INTEGER
 # Basic Introduction to the game
 print(" Welcome to the BattleShip Game !!")
 print(" Rules are ")
-print(" 1. There are only 4 ships containing 4 cells each. \n 2. The ships only expand horizontally or vertically. \n 3. No ship has any cell in common.")
+print(" 1. There are only 4 ships containing 4 cells each. \n 2. The ships only expand horizontally or vertically. \n 3. No ship has any cell in common. \n 4. Only integer values will be accpeted.")
 
 rows, cols = (8,8)  #declared the grid bounds   
 
@@ -178,7 +179,7 @@ def shipSank(ship):
                 return False
 #To set ships in the board for users to see
 def setShipOnScreen(board,x,y):
-    board[x][y] = 'S'   #S For Found ship
+    board[x][y] = '*'   #S For Found ship
     #print_board(board)  
     print()
     return board 
@@ -189,13 +190,23 @@ while(shipSunk != 4):
         # flag is used to terminate loop when the cell is already opened
         flag = 0  # To denote cell exists but already opened
         flag2 = 0 # To denote cell exists but not already opened
+        flag3 = 0
         print_board(board)
         print()
         print("Enter co-ordintes between 0 to 7")
-        x = int(input("Enter row co-ordinate: "))
-        y = int(input("Enter col co-ordinate: "))
+
+        try:
+                x = int(input("Enter row co-ordinate: "))
+                y = int(input("Enter col co-ordinate: "))
+        except ValueError:
+                print("Please Enter number between 0 and 7 only to playthe game")
+                continue
 
         count += 1  # To keep track of number of times input was taken
+        # if isinstance(x,int) == False:
+        #         while (isinstance(x,int) == False):
+        #                 print("Please Enter number between 0 and 7 only to play")
+        #                 x = int(input("Enter row co-ordinate: "))
 
         #check whether the co ordinates are not out of bound
         if x not in range(0,8):
@@ -239,11 +250,11 @@ while(shipSunk != 4):
                                                         print("You sank a ship")
                                                         print()
                                                         shipSunk += 1 # increment the shipsunk variable it is used for the base case of while loop 
-                                                break # To terminate loop at 207
+                                                break # To terminate loop at 240
                                         else:   
-                                                flag = 1  # to terminate the loop at 195
+                                                flag = 1  # to terminate the loop at 224
                                                 print("Cell Already Opened!!")
-                                                break  # exit the loop at the line 206
+                                                break  # exit the loop at the line 240
                                 # print("Oops, no cell Found!")
                                 # print("Try Again...")
         # No such cell exists then
